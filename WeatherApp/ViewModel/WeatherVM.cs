@@ -47,9 +47,13 @@ namespace WeatherApp.ViewModel
         {
             get { return selectedCity; }
             set 
-            { 
-                selectedCity = value; 
-                OnPropertyChanged("SelectedCity");
+            {
+                selectedCity = value;
+                if (selectedCity != null)
+                {
+                    OnPropertyChanged("SelectedCity");
+                    GetCurrentConditions();
+                }
             }
         }
 
@@ -82,8 +86,8 @@ namespace WeatherApp.ViewModel
         private async void GetCurrentConditions()
         {
             Query = string.Empty;
-            Cities.Clear();
             CurrentConditions = await AccuWeatherHelper.GetCurrentConditions(SelectedCity.Key);
+            Cities.Clear();
         }
 
         public async void MakeQuery()
