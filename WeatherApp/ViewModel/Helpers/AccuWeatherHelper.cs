@@ -10,7 +10,7 @@ using WeatherApp.Model;
 
 namespace WeatherApp.ViewModel.Helpers
 {
-    public class AccuWheatherHelper
+    public class AccuWeatherHelper
     {
         public const string BASE_URL = "http://dataservice.accuweather.com/";
         public const string AUTOCOMPLETE_ENDPOINT = "locations/v1/cities/autocomplete?apikey={0}&q={1}";
@@ -34,9 +34,9 @@ namespace WeatherApp.ViewModel.Helpers
             return cities;
         }
 
-        public static async Task<CurrentCoditions> GetCurrentCoditions(string cityKey)
+        public static async Task<CurrentConditions> GetCurrentConditions(string cityKey)
         {
-            CurrentCoditions currentCoditions = new CurrentCoditions();
+            CurrentConditions currentCoditions = new CurrentConditions();
 
             string url = BASE_URL + string.Format(CURRENT_CONDITIONS_ENDPOINT, cityKey, API_KEY);
 
@@ -45,7 +45,7 @@ namespace WeatherApp.ViewModel.Helpers
                 var respons = await client.GetAsync(url);
                 string json = await respons.Content.ReadAsStringAsync();
 
-                currentCoditions = (JsonConvert.DeserializeObject<List<CurrentCoditions>>(json)).FirstOrDefault();
+                currentCoditions = (JsonConvert.DeserializeObject<List<CurrentConditions>>(json)).FirstOrDefault();
             }
 
             return currentCoditions;

@@ -8,7 +8,7 @@ namespace WeatherApp.Model
 {
     public class Units
     {
-        public double Value { get; set; }
+        public string Value { get; set; }
         public string Unit { get; set; }
         public int UnitType { get; set; }
     }
@@ -19,7 +19,7 @@ namespace WeatherApp.Model
         public Units Imperial { get; set; }
     }
 
-    public class CurrentCoditions
+    public class CurrentConditions
     {
         public DateTime LocalObservationDateTime { get; set; }
         public int EpochTime { get; set; }
